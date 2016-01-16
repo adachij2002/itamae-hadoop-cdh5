@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>/var/hadoop/dfs/name</value>
+  </property>
+
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>/var/hadoop/dfs/data</value>
+  </property>
+
+  <property>
+    <name>dfs.permissions.superusergroup</name>
+    <value>hadoop</value>
+  </property>
+
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+  </property>
+
+  <property>
+    <name>dfs.hosts</name>
+    <value>/etc/hadoop/conf/hosts.include</value>
+  </property>
+
+  <property>
+    <name>dfs.hosts.exclude</name>
+    <value>/etc/hadoop/conf/hosts.exclude</value>
+  </property>
+
+  <!-- Short-Circuit Local Reads -->
+  <property>
+    <name>dfs.client.read.shortcircuit</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.domain.socket.path</name>
+    <value>/var/run/hadoop-hdfs/dn._PORT</value>
+  </property>
+
+  <!-- WebHDFS -->
+  <property>
+    <name>dfs.webhdfs.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.support.append</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.support.broken.append</name>
+    <value>true</value>
+  </property>
+
+  <!-- NameNode HA -->
+  <property>
+    <name>dfs.nameservices</name>
+    <value>nn-cluster</value>
+  </property>
+
+  <property>
+    <name>dfs.ha.namenodes.nn-cluster</name>
+    <value>nn1,nn2</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.rpc-address.nn-cluster.nn1</name>
+    <value>vm-cdh5-ma01:8020</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.rpc-address.nn-cluster.nn2</name>
+    <value>vm-cdh5-ma02:8020</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.http-address.nn-cluster.nn1</name>
+    <value>vm-cdh5-ma01:50070</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.http-address.nn-cluster.nn2</name>
+    <value>vm-cdh5-ma02:50070</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.shared.edits.dir</name>
+<!--    <value>qjournal://vm-cdh5-ma01:8485;vm-cdh5-ma02:8485;vm-cdh5-sl01:8485/nn-cluster</value> -->
+    <value>qjournal://vm-cdh5-ma01:8485/nn-cluster</value>
+  </property>
+
+  <property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value>/var/hadoop/dfs/jn</value>
+  </property>
+
+  <property>
+    <name>dfs.client.failover.proxy.provider.nn-cluster</name>
+    <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+  </property>
+
+  <!-- ZooKeeper -->
+  <property>
+    <name>dfs.ha.automatic-failover.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.ha.fencing.methods</name>
+    <value>sshfence(hdfs:22)</value>
+  </property>
+
+  <property>
+    <name>dfs.ha.fencing.ssh.private-key-files</name>
+    <value>/usr/lib/hadoop-hdfs/.ssh/id_rsa</value>
+  </property>
+
+  <property>
+    <name>dfs.ha.zkfc.port</name>
+    <value>8019</value>
+  </property>
+
+</configuration>

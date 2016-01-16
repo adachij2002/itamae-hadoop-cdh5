@@ -1,0 +1,7 @@
+---
+# core-site.xml
+# NameNode HA
+fs_defaultFS:        "hdfs://nn-cluster"
+
+# ZooKeeper
+ha_zookeeper_quorum: "vm-cdh5-ma01:2181"
