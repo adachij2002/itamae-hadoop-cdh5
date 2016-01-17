@@ -6,6 +6,8 @@ package "hadoop"
 
 remote_directory "/etc/hadoop/conf.cluster" do
   source "files/etc/hadoop/conf.cluster"
+  owner "root"
+  group "root"
 end
 
 template "/etc/hadoop/conf.cluster/core-site.xml"
