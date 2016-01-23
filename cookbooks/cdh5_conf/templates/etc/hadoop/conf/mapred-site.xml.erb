@@ -19,13 +19,13 @@
     <value><%= node['mapred_site']['mapreduce_reduce_memory_mb'] %></value>
   </property>
 
-  <!-- YARN Application Master -->
+  <!-- Application Master -->
   <property>
     <name>yarn.app.mapreduce.am.staging-dir</name>
     <value><%= node['mapred_site']['yarn_app_mapreduce_am_staging_dir'] %></value>
   </property>
 
-  <!-- YARN JobHistory Server -->
+  <!-- JobHistory Server -->
   <property>
     <name>mapreduce.jobhistory.address</name>
     <value><%= node['mapred_site']['mapreduce_jobhistory_address'] %></value>
