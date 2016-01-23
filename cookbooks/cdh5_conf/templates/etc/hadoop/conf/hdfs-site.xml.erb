@@ -3,14 +3,15 @@
 
 <configuration>
 
+  <!-- NameNode -->
   <property>
     <name>dfs.namenode.name.dir</name>
-    <value>/var/hadoop/dfs/name</value>
+    <value><%= node['hdfs_site']['dfs_namenode_name_dir'] %></value>
   </property>
 
   <property>
-    <name>dfs.datanode.data.dir</name>
-    <value>/var/hadoop/dfs/data</value>
+    <name>dfs.namenode.shared.edits.dir</name>
+    <value><%= node['hdfs_site']['dfs_namenode_shared_edits_dir'] %></value>
   </property>
 
   <property>
@@ -20,7 +21,7 @@
 
   <property>
     <name>dfs.replication</name>
-    <value>1</value>
+    <value><%= node['hdfs_site']['dfs_replication'] %></value>
   </property>
 
   <property>
@@ -31,23 +32,6 @@
   <property>
     <name>dfs.hosts.exclude</name>
     <value>/etc/hadoop/conf/hosts.exclude</value>
-  </property>
-
-  <!-- Short-Circuit Local Reads -->
-  <property>
-    <name>dfs.client.read.shortcircuit</name>
-    <value>true</value>
-  </property>
-
-  <property>
-    <name>dfs.domain.socket.path</name>
-    <value>/var/run/hadoop-hdfs/dn._PORT</value>
-  </property>
-
-  <!-- WebHDFS -->
-  <property>
-    <name>dfs.webhdfs.enabled</name>
-    <value>true</value>
   </property>
 
   <property>
@@ -73,41 +57,24 @@
 
   <property>
     <name>dfs.namenode.rpc-address.nn-cluster.nn1</name>
-    <value>vm-cdh5-ma01:8020</value>
+    <value><%= node['hdfs_site']['dfs_namenode_rpc_address_nn_cluster_nn1'] %></value>
   </property>
 
   <property>
     <name>dfs.namenode.rpc-address.nn-cluster.nn2</name>
-    <value>vm-cdh5-ma02:8020</value>
+    <value><%= node['hdfs_site']['dfs_namenode_rpc_address_nn_cluster_nn2'] %></value>
   </property>
 
   <property>
     <name>dfs.namenode.http-address.nn-cluster.nn1</name>
-    <value>vm-cdh5-ma01:50070</value>
+    <value><%= node['hdfs_site']['dfs_namenode_http_address_nn_cluster_nn1'] %></value>
   </property>
 
   <property>
     <name>dfs.namenode.http-address.nn-cluster.nn2</name>
-    <value>vm-cdh5-ma02:50070</value>
+    <value><%= node['hdfs_site']['dfs_namenode_http_address_nn_cluster_nn2'] %></value>
   </property>
 
-  <property>
-    <name>dfs.namenode.shared.edits.dir</name>
-<!--    <value>qjournal://vm-cdh5-ma01:8485;vm-cdh5-ma02:8485;vm-cdh5-sl01:8485/nn-cluster</value> -->
-    <value>qjournal://vm-cdh5-ma01:8485/nn-cluster</value>
-  </property>
-
-  <property>
-    <name>dfs.journalnode.edits.dir</name>
-    <value>/var/hadoop/dfs/jn</value>
-  </property>
-
-  <property>
-    <name>dfs.client.failover.proxy.provider.nn-cluster</name>
-    <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
-  </property>
-
-  <!-- ZooKeeper -->
   <property>
     <name>dfs.ha.automatic-failover.enabled</name>
     <value>true</value>
@@ -123,6 +90,41 @@
     <value>/usr/lib/hadoop-hdfs/.ssh/id_rsa</value>
   </property>
 
+  <property>
+    <name>dfs.client.failover.proxy.provider.nn-cluster</name>
+    <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+  </property>
+
+  <!-- JournalNode -->
+  <property>
+    <name>dfs.journalnode.edits.dir</name>
+    <value><%= node['hdfs_site']['dfs_journalnode_edits_dir'] %></value>
+  </property>
+
+  <!-- DataNode -->
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value><%= node['hdfs_site']['dfs_datanode_data_dir'] %></value>
+  </property>
+
+  <!-- WebHDFS -->
+  <property>
+    <name>dfs.webhdfs.enabled</name>
+    <value>true</value>
+  </property>
+
+  <!-- Short-Circuit Local Reads -->
+  <property>
+    <name>dfs.client.read.shortcircuit</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.domain.socket.path</name>
+    <value>/var/run/hadoop-hdfs/dn._PORT</value>
+  </property>
+
+  <!-- ZooKeeper -->
   <property>
     <name>dfs.ha.zkfc.port</name>
     <value>8019</value>

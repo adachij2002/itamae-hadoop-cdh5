@@ -3,7 +3,7 @@
 
 <configuration>
 
-  <!-- YARN -->
+  <!-- YARN (MRv2) -->
   <property>
     <name>mapreduce.framework.name</name>
     <value>yarn</value>
@@ -11,34 +11,29 @@
 
   <property>
     <name>mapreduce.map.memory.mb</name>
-    <value>512</value>
+    <value><%= node['mapred_site']['mapreduce_map_memory_mb'] %></value>
   </property>
 
   <property>
     <name>mapreduce.reduce.memory.mb</name>
-    <value>512</value>
+    <value><%= node['mapred_site']['mapreduce_reduce_memory_mb'] %></value>
   </property>
 
+  <!-- YARN Application Master -->
   <property>
     <name>yarn.app.mapreduce.am.staging-dir</name>
-    <value>/user</value>
+    <value><%= node['mapred_site']['yarn_app_mapreduce_am_staging_dir'] %></value>
   </property>
 
-  <!-- YARN jobhistory server setting -->
+  <!-- YARN JobHistory Server -->
   <property>
     <name>mapreduce.jobhistory.address</name>
-    <value>vm-cdh5-ma01:10020</value>
+    <value><%= node['mapred_site']['mapreduce_jobhistory_address'] %></value>
   </property>
 
   <property>
     <name>mapreduce.jobhistory.webapp.address</name>
-    <value>vm-cdh5-ma01:19888</value>
-  </property>
-
-  <property>
-    <name>yarn.scheduler.maximum-allocation-vcores</name>
-    <value>2</value>
+    <value><%= node['mapred_site']['mapreduce_jobhistory_webapp_address'] %></value>
   </property>
 
 </configuration>
-

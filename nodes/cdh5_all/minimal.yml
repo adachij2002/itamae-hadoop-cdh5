@@ -1,0 +1,56 @@
+---
+### Java
+java:
+  version: "8u71"
+
+### Hadoop
+# /etc/hadoop/conf
+hadoop_conf:
+  name:                                                 "conf.minimal"
+
+# core-site.xml
+core_site:
+  # NameNode HA
+  fs_defaultFS:                                         "hdfs://nn-cluster"
+
+  # ZooKeeper
+#  ha_zookeeper_quorum:                                  "localhost:2181"
+
+# hdfs-site.xml
+hdfs_site:
+  dfs_namenode_name_dir:                                "/var/hadoop/dfs/name"
+#  dfs_namenode_shared_edits_dir:                        "qjournal://localhost:8485/nn-cluster"
+#  dfs_namenode_rpc_address_nn_cluster_nn1:              "localhost:8020"
+#  dfs_namenode_rpc_address_nn_cluster_nn2:              "localhost:8021"
+#  dfs_namenode_http_address_nn_cluster_nn1:             "localhost:50070"
+#  dfs_namenode_http_address_nn_cluster_nn2:             "localhost:50071"
+  dfs_replication:                                      "1"
+  dfs_journalnode_edits_dir:                            "/var/hadoop/dfs/jn"
+  dfs_datanode_data_dir:                                "/var/hadoop/dfs/data"
+
+# mapred-site.xml
+mapred_site:
+  mapreduce_map_memory_mb:                              "512"
+  mapreduce_reduce_memory_mb:                           "512"
+  yarn_app_mapreduce_am_staging_dir:                    "/user"
+#  mapreduce_jobhistory_address:                         "localhost:10020"
+#  mapreduce_jobhistory_webapp_address:                  "localhost:19888"
+
+# yarn-site.xml
+yarn_site:
+  yarn_scheduler_maximum_allocation_vcores:             "2"
+#  yarn_resourcemanager_hostname_rm1:                    "localhost"
+#  yarn_resourcemanager_hostname_rm2:                    "localhost"
+#  yarn_resourcemanager_address_rm1:                     "localhost:8032"
+#  yarn_resourcemanager_address_rm2:                     "localhost:18032"
+#  yarn_resourcemanager_webapp_address_rm1:              "localhost:8088"
+#  yarn_resourcemanager_webapp_address_rm2:              "localhost:18088"
+  yarn_resourcemanager_ha_id:                           "rm1"
+#  yarn_nodemanager_hostname:                            "localhost"
+  yarn_nodemanager_local_dirs:                          "/var/hadoop/yarn/local"
+  yarn_nodemanager_log_dirs:                            "/var/log/hadoop-yarn/containers"
+  yarn_nodemanager_remote_app_log_dir:                  "/var/log/hadoop-yarn/apps"
+#  yarn_log_server_url:                                  "http://localhost:19888/jobhistory/logs/"
+#  yarn_timeline_service_hostname:                       "localhost"
+  yarn_timeline_service_leveldb_timeline_store_path:    "/var/log/hadoop-yarn/timeline"
+#  yarn_resourcemanager_zk_address:                      "localhost:2181"

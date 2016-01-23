@@ -11,7 +11,7 @@ node.reverse_merge!({
   }
 })
 java_build_number = java_versions[node['java']['version']]
-java_rpm_version = sprintf("1\\.%s\\.0_%s", node['java']['version'][0], node['java']['version'][2, 2])
+java_rpm_version = sprintf("1\\.%s\\.0_%s", *node['java']['version'].split("u"))
 
 execute "Download Oracle JDK" do
   command "wget --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' http://download.oracle.com/otn-pub/java/jdk/#{node['java']['version']}-#{java_build_number}/jdk-#{node['java']['version']}-linux-x64.rpm -O /tmp/jdk-#{node['java']['version']}-linux-x64.rpm"

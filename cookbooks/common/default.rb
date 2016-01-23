@@ -1,4 +1,4 @@
-common_packages = ["wget"]
+common_packages = ["wget", "libcgroup"]
 
 common_packages.each do |pkg|
   package pkg do

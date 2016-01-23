@@ -5,16 +5,6 @@
 
   <!-- YARN -->
   <property>
-    <name>yarn.nodemanager.aux-services</name>
-    <value>mapreduce_shuffle</value>
-  </property>
-
-  <property>
-    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
-    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
-  </property>
-
-  <property>
      <name>yarn.application.classpath</name>
      <value>
         $HADOOP_CONF_DIR,
@@ -26,10 +16,31 @@
      </value>
   </property>
 
+  <property>
+    <name>yarn.scheduler.maximum-allocation-vcores</name>
+    <value><%= node['yarn_site']['yarn_scheduler_maximum_allocation_vcores'] %></value>
+  </property>
+
+  <!-- YARN (MRv2) -->
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+
   <!-- ResourceManager HA -->
   <property>
     <name>yarn.resourcemanager.ha.enabled</name>
     <value>true</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.cluster-id</name>
+    <value>rm-cluster</value>
   </property>
 
   <property>
@@ -39,32 +50,32 @@
 
   <property>
     <name>yarn.resourcemanager.hostname.rm1</name>
-    <value>vm-cdh5-ma01</value>
+    <value><%= node['yarn_site']['yarn_resourcemanager_hostname_rm1'] %></value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.hostname.rm2</name>
-    <value>vm-cdh5-ma01</value>
+    <value><%= node['yarn_site']['yarn_resourcemanager_hostname_rm2'] %></value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.address.rm1</name>
-    <value>vm-cdh5-ma01:8032</value>
+    <value><%= node['yarn_site']['yarn_resourcemanager_address_rm1'] %></value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.address.rm2</name>
-    <value>vm-cdh5-ma01:18032</value>
+    <value><%= node['yarn_site']['yarn_resourcemanager_address_rm2'] %></value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.webapp.address.rm1</name>
-    <value>vm-cdh5-ma01:8088</value>
+    <value><%= node['yarn_site']['yarn_resourcemanager_webapp_address_rm1'] %></value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.webapp.address.rm2</name>
-    <value>vm-cdh5-ma01:18088</value>
+    <value><%= node['yarn_site']['yarn_resourcemanager_webapp_address_rm2'] %></value>
   </property>
 
   <property>
@@ -90,31 +101,31 @@
   <!-- launch more than one ResourceManager on a single node -->
   <property>
     <name>yarn.resourcemanager.ha.id</name>
-    <value>rm1</value>
+    <value><%= node['yarn_site']['yarn_resourcemanager_ha_id'] %></value>
   </property>
 
   <!-- NodeManager -->
   <property>
     <name>yarn.nodemanager.hostname</name>
-    <value>vm-cdh5-ma01</value>
+    <value><%= node['yarn_site']['yarn_nodemanager_hostname'] %></value>
   </property>
 
   <property>
     <name>yarn.nodemanager.local-dirs</name>
-    <value>/var/hadoop/yarn/local</value>
+    <value><%= node['yarn_site']['yarn_nodemanager_local_dirs'] %></value>
   </property>
 
   <property>
     <name>yarn.nodemanager.log-dirs</name>
-    <value>/var/log/hadoop-yarn/containers</value>
+    <value><%= node['yarn_site']['yarn_nodemanager_log_dirs'] %></value>
   </property>
 
   <property>
     <name>yarn.nodemanager.remote-app-log-dir</name>
-    <value>/var/log/hadoop-yarn/apps</value>
+    <value><%= node['yarn_site']['yarn_nodemanager_remote_app_log_dir'] %></value>
   </property>
 
-  <!-- LXCContainerExecuter -->
+  <!-- LXC -->
   <property>
     <name>yarn.nodemanager.container-executor.class</name>
     <value>org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor</value>
@@ -161,7 +172,7 @@
   <!-- JobHistory Server -->
   <property>
     <name>yarn.log.server.url</name>
-    <value>http://vm-cdh5-ma01:19888/jobhistory/logs/</value>
+    <value><%= node['yarn_site']['yarn_log_server_url'] %></value>
   </property>
 
   <!-- Timeline Server -->
@@ -172,7 +183,7 @@
 
   <property>
     <name>yarn.timeline-service.hostname</name>
-    <value>vm-cdh5-ma01</value>
+    <value><%= node['yarn_site']['yarn_timeline_service_hostname'] %></value>
   </property>
 
   <property>
@@ -187,19 +198,13 @@
 
   <property>
     <name>yarn.timeline-service.leveldb-timeline-store.path</name>
-    <value>/var/log/hadoop-yarn/timeline</value>
+    <value><%= node['yarn_site']['yarn_timeline_service_leveldb_timeline_store_path'] %></value>
   </property>
 
   <!-- ZooKeeper -->
   <property>
-    <name>yarn.resourcemanager.cluster-id</name>
-    <value>rm-cluster</value>
-  </property>
-
-  <property>
     <name>yarn.resourcemanager.zk-address</name>
-    <value>vm-cdh5-ma01:2181</value>
+    <value><%= node['yarn_site']['yarn_resourcemanager_zk_address'] %></value>
   </property>
 
 </configuration>
-
