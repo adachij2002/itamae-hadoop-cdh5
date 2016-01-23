@@ -1,3 +1,4 @@
+include_recipe "../../cookbooks/cdh5_zookeeper_server/default"
 include_recipe "../../cookbooks/cdh5_namenode/default"
 include_recipe "../../cookbooks/cdh5_datanode/default"
 include_recipe "../../cookbooks/cdh5_journalnode/default"

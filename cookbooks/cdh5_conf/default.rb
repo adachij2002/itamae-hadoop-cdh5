@@ -1,9 +1,9 @@
 node.reverse_merge!({
   'hadoop_conf' => {
-    'name'                                     => 'conf.default',
+    'name'                                     => "conf.default",
   },
   'core_site' => {
-    'fs_defaultFS'                             => 'hdfs://nn-cluster',
+    'fs_defaultFS'                             => "hdfs://nn-cluster",
     'ha_zookeeper_quorum'                      => node['hostname'] + ":2181",
   },
   'hdfs_site' => {
@@ -18,16 +18,18 @@ node.reverse_merge!({
     'mapreduce_jobhistory_webapp_address'      => node['hostname'] + ":19888",
   },
   'yarn_site' => {
-    'yarn_resourcemanager_hostname_rm1'        => node['hostname'],
-    'yarn_resourcemanager_hostname_rm2'        => node['hostname'],
-    'yarn_resourcemanager_address_rm1'         => node['hostname'] + ":8032",
-    'yarn_resourcemanager_address_rm2'         => node['hostname'] + ":18032",
-    'yarn_resourcemanager_webapp_address_rm1'  => node['hostname'] + ":8088",
-    'yarn_resourcemanager_webapp_address_rm2'  => node['hostname'] + ":18088",
-    'yarn_nodemanager_hostname'                => node['hostname'],
-    'yarn_log_server_url'                      => "http://" + node['hostname'] + ":19888/jobhistory/logs/",
-    'yarn_timeline_service_hostname'           => node['hostname'],
-    'yarn_resourcemanager_zk_address'          => node['hostname'] + ":2181",
+    'yarn_resourcemanager_hostname_rm1'                             => node['hostname'],
+    'yarn_resourcemanager_hostname_rm2'                             => node['hostname'],
+    'yarn_resourcemanager_address_rm1'                              => node['hostname'] + ":8032",
+    'yarn_resourcemanager_address_rm2'                              => node['hostname'] + ":18032",
+    'yarn_resourcemanager_webapp_address_rm1'                       => node['hostname'] + ":8088",
+    'yarn_resourcemanager_webapp_address_rm2'                       => node['hostname'] + ":18088",
+    'yarn_nodemanager_hostname'                                     => node['hostname'],
+    'yarn_nodemanager_linux_container_executor_cgroups_mount_path'  => "/cgroup",
+    'yarn_nodemanager_linux_container_executor_cgroups_hierarchy'   => "/hadoop-yarn",
+    'yarn_log_server_url'                                           => "http://" + node['hostname'] + ":19888/jobhistory/logs/",
+    'yarn_timeline_service_hostname'                                => node['hostname'],
+    'yarn_resourcemanager_zk_address'                               => node['hostname'] + ":2181",
   },
 })
 

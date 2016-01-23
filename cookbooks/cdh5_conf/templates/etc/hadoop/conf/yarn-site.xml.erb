@@ -142,18 +142,18 @@
   </property>
 
   <property>
-    <name>yarn.nodemanager.linux-container-executor.cgroups.hierarchy</name>
-    <value>/hadoop-yarn</value>
-  </property>
-
-  <property>
     <name>yarn.nodemanager.linux-container-executor.cgroups.mount</name>
-    <value>true</value>
+    <value><%= node['yarn_site']['yarn_nodemanager_linux_container_executor_cgroups_mount'] %></value>
   </property>
 
   <property>
     <name>yarn.nodemanager.linux-container-executor.cgroups.mount-path</name>
-    <value>/cgroup</value>
+    <value><%= node['yarn_site']['yarn_nodemanager_linux_container_executor_cgroups_mount_path'] %></value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.linux-container-executor.cgroups.hierarchy</name>
+    <value><%= node['yarn_site']['yarn_nodemanager_linux_container_executor_cgroups_hierarchy'] %></value>
   </property>
 
   <property>
