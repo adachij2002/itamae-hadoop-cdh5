@@ -1,31 +1,20 @@
-<?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-
 <configuration>
 
-  <!-- NameNode -->
-<!--
+  <!-- NameNode HA -->
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://vm-cdh5-ma01:8020</value>
+    <value><%= node[:core_site][:fs_defaultFS] %></value>
   </property>
--->
 
   <property>
     <name>fs.trash.interval</name>
     <value>10080</value>
   </property>
 
-  <!-- NameNode HA -->
-  <property>
-    <name>fs.defaultFS</name>
-    <value><%= node[:fs_defaultFS] %></value>
-  </property>
-
   <!-- ZooKeeper -->
   <property>
     <name>ha.zookeeper.quorum</name>
-    <value><%= node[:ha_zookeeper_quorum] %></value>
+    <value><%= node[:core_site][:ha_zookeeper_quorum] %></value>
   </property>
 
   <!-- Hive proxy user -->
