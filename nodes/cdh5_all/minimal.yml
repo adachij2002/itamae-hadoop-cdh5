@@ -38,6 +38,7 @@ mapred_site:
 
 # yarn-site.xml
 yarn_site:
+  log_aggregation_enable:                               "true"
   yarn_scheduler_maximum_allocation_vcores:             "2"
 #  yarn_resourcemanager_hostname_rm1:                    "localhost"
 #  yarn_resourcemanager_hostname_rm2:                    "localhost"

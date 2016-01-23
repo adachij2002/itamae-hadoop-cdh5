@@ -17,6 +17,11 @@
   </property>
 
   <property>
+    <name>yarn.log-aggregation-enable</name>
+    <value><%= node['yarn_site']['log_aggregation_enable'] %></value>
+  </property>
+
+  <property>
     <name>yarn.scheduler.maximum-allocation-vcores</name>
     <value><%= node['yarn_site']['yarn_scheduler_maximum_allocation_vcores'] %></value>
   </property>
