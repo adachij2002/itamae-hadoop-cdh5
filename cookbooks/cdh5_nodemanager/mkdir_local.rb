@@ -19,5 +19,5 @@ end
 directory node['yarn_site']['yarn_nodemanager_linux_container_executor_cgroups_mount_path'] + "/cpu" do
   owner "yarn"
   group "yarn"
-  not_if node['yarn_site']['yarn_nodemanager_linux_container_executor_cgroups_mount'] == "true"
+  only_if node['yarn_site']['yarn_nodemanager_linux_container_executor_cgroups_mount'] == "true"
 end
