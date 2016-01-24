@@ -52,14 +52,14 @@ yarn_site:
   yarn_nodemanager_log_dirs:                                      "/var/log/hadoop-yarn/containers"
   yarn_nodemanager_remote_app_log_dir:                            "/var/log/hadoop-yarn/apps"
   yarn_nodemanager_linux_container_executor_cgroups_mount:        "true"
-  yarn_nodemanager_linux_container_executor_cgroups_mount_path:   "/cgroup"
-  yarn_nodemanager_linux_container_executor_cgroups_hierarchy:    "/hadoop-yarn"
+#  yarn_nodemanager_linux_container_executor_cgroups_mount_path:   "/cgroup"
+#  yarn_nodemanager_linux_container_executor_cgroups_hierarchy:    "/hadoop-yarn"
 #  yarn_log_server_url:                                            "http://localhost:19888/jobhistory/logs/"
 #  yarn_timeline_service_hostname:                                 "localhost"
   yarn_timeline_service_leveldb_timeline_store_path:              "/var/log/hadoop-yarn/timeline"
 #  yarn_resourcemanager_zk_address:                                "localhost:2181"
 
 # zoo.cfg
-zoo:
-  servers:
-    -                                                   "localhost:2888:3888"
+#zoo:
+#  servers:
+#    -                                                   "localhost:2888:3888"
