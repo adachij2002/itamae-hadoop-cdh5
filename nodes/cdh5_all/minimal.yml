@@ -15,15 +15,16 @@ core_site:
 
   # ZooKeeper
 #  ha_zookeeper_quorum:                                  "localhost:2181"
+#  ha_zookeeper_parent_znode:                            "/hadoop-ha"
 
 # hdfs-site.xml
 hdfs_site:
   dfs_namenode_name_dir:                                "/var/hadoop/dfs/name"
 #  dfs_namenode_shared_edits_dir:                        "qjournal://localhost:8485/nn-cluster"
 #  dfs_namenode_rpc_address_nn_cluster_nn1:              "localhost:8020"
-#  dfs_namenode_rpc_address_nn_cluster_nn2:              "localhost:8021"
+  dfs_namenode_rpc_address_nn_cluster_nn2:              "dummy:8020"
 #  dfs_namenode_http_address_nn_cluster_nn1:             "localhost:50070"
-#  dfs_namenode_http_address_nn_cluster_nn2:             "localhost:50071"
+  dfs_namenode_http_address_nn_cluster_nn2:             "dummy:50070"
   dfs_replication:                                      "1"
   dfs_journalnode_edits_dir:                            "/var/hadoop/dfs/jn"
   dfs_datanode_data_dir:                                "/var/hadoop/dfs/data"

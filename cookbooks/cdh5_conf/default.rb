@@ -5,6 +5,7 @@ node.reverse_merge!({
   'core_site' => {
     'fs_defaultFS'                             => "hdfs://nn-cluster",
     'ha_zookeeper_quorum'                      => node['hostname'] + ":2181",
+    'ha_zookeeper_parent_znode'                => "/hadoop-ha",
   },
   'hdfs_site' => {
     'dfs_namenode_shared_edits_dir'            => "qjournal://" + node['hostname'] + ":8485/nn-cluster",
@@ -39,10 +40,11 @@ remote_directory "/etc/hadoop/" + node['hadoop_conf']['name'] do
   group "root"
 end
 
-template "/etc/hadoop/conf/core-site.xml"
-template "/etc/hadoop/conf/hdfs-site.xml"
-template "/etc/hadoop/conf/mapred-site.xml"
-template "/etc/hadoop/conf/yarn-site.xml"
+file "/etc/hadoop/" + node['hadoop_conf']['name'] + "/container-executor.cfg" do
+  mode "644"
+  owner "root"
+  group "root"
+end
 
 execute "alternatives install" do
   command "alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/" + node['hadoop_conf']['name'] + " 50"
@@ -52,4 +54,17 @@ end
 execute "alternatives set" do
   command "alternatives --set hadoop-conf /etc/hadoop/" + node['hadoop_conf']['name']
   not_if "ls -l /etc/alternatives/hadoop-conf | grep -F '" + node['hadoop_conf']['name'] + "'"
+end
+
+template "/etc/hadoop/conf/core-site.xml" do
+  mode "644"
+end
+template "/etc/hadoop/conf/hdfs-site.xml" do
+  mode "644"
+end
+template "/etc/hadoop/conf/mapred-site.xml" do
+  mode "644"
+end
+template "/etc/hadoop/conf/yarn-site.xml" do
+  mode "644"
 end

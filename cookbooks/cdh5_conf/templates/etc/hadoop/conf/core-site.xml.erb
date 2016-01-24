@@ -20,6 +20,11 @@
     <value><%= node['core_site']['ha_zookeeper_quorum'] %></value>
   </property>
 
+  <property>
+    <name>ha.zookeeper.parent-znode</name>
+    <value><%= node['core_site']['ha_zookeeper_parent_znode'] %></value>
+  </property>
+
   <!-- YARN (MRv2) proxy user -->
   <property>
     <name>hadoop.proxyuser.mapred.hosts</name>
