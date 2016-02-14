@@ -36,14 +36,6 @@ node.reverse_merge!({
 
 remote_directory "/etc/hadoop/" + node['hadoop_conf']['name'] do
   source "files/etc/hadoop/conf"
-  owner "root"
-  group "root"
-end
-
-file "/etc/hadoop/" + node['hadoop_conf']['name'] + "/container-executor.cfg" do
-  mode "644"
-  owner "root"
-  group "root"
 end
 
 execute "alternatives install" do
@@ -56,15 +48,19 @@ execute "alternatives set" do
   not_if "ls -l /etc/alternatives/hadoop-conf | grep -F '" + node['hadoop_conf']['name'] + "'"
 end
 
-template "/etc/hadoop/conf/core-site.xml" do
-  mode "644"
+template "/etc/hadoop/conf/core-site.xml"
+template "/etc/hadoop/conf/hdfs-site.xml"
+template "/etc/hadoop/conf/mapred-site.xml"
+template "/etc/hadoop/conf/yarn-site.xml"
+
+execute "chmod /etc/hadoop/conf files" do
+  command "find /etc/hadoop/conf/ -type f -print | xargs chmod 644"
 end
-template "/etc/hadoop/conf/hdfs-site.xml" do
-  mode "644"
+
+execute "chmod /etc/hadoop/conf directories" do
+  command "find /etc/hadoop/conf/ -type d -print | xargs chmod 755"
 end
-template "/etc/hadoop/conf/mapred-site.xml" do
-  mode "644"
-end
-template "/etc/hadoop/conf/yarn-site.xml" do
-  mode "644"
+
+execute "chown /etc/hadoop/conf directory" do
+  command "chown -R root:root /etc/hadoop/conf/"
 end
